@@ -9,5 +9,5 @@ public class Runway {
         this.queue = new ArrayList<>();
     }
 
-    public void main(String[] args) {}
+    public static void main(String[] args) {}
 }

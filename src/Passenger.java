@@ -153,8 +153,8 @@ public class Passenger implements CustomerInterface{
         }
 
         // Test displayFlights() with a single flight (and by manually adding to flightList)
-        Flight flight01 = new Flight(1, "Saskatoon", "Toronto", 1100, 1300);
-        passenger.flightList.add(flight01);
+        Flight flight04 = new Flight(1, "Saskatoon", "Toronto", 1100, 1300);
+        passenger.flightList.add(flight04);
         expected = "Flight Number 1 - Saskatoon->Toronto 11:00-13:00.\n";
         result = passenger.displayFlights();
         if (!expected.equals(result)){
@@ -162,12 +162,13 @@ public class Passenger implements CustomerInterface{
         }
 
         // Test displayFlights() with multiple flights (and by manually adding to flightList)
-        Flight flight02 = new Flight(2, "Toronto", "Paris", 1500, 2330);
-        passenger.flightList.add(flight02);
+        Flight flight05 = new Flight(2, "Toronto", "Paris", 1500, 2330);
+        passenger.flightList.add(flight05);
         expected += "Flight Number 2 - Toronto->Paris 15:00-23:30.\n";
         result = passenger.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
     }
+}
 }

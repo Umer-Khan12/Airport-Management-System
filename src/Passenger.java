@@ -135,11 +135,11 @@ public class Passenger implements CustomerInterface{
         }
         catch (RuntimeException exception) {
             // expected
-        Passenger passenger = new Passenger(1, null);
+        Passenger passenger02 = new Passenger(2, null);
         // Unit test for timeIntToString()
         int time1 = 1645;
         String expected = "16:45";
-        String result = passenger.timeIntToString(time1);
+        String result = passenger02.timeIntToString(time1);
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
@@ -147,28 +147,46 @@ public class Passenger implements CustomerInterface{
         // Unit tests for displayFlights()
         // Test displayFlights() with an empty flightList
         expected = "No flights currently booked.";
-        result = passenger.displayFlights();
+        result = passenger02.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
 
         // Test displayFlights() with a single flight (and by manually adding to flightList)
         Flight flight04 = new Flight(1, "Saskatoon", "Toronto", 1100, 1300);
-        passenger.flightList.add(flight04);
+        passenger02.flightList.add(flight04);
         expected = "Flight Number 1 - Saskatoon->Toronto 11:00-13:00.\n";
-        result = passenger.displayFlights();
+        result = passenger02.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
 
         // Test displayFlights() with multiple flights (and by manually adding to flightList)
         Flight flight05 = new Flight(2, "Toronto", "Paris", 1500, 2330);
-        passenger.flightList.add(flight05);
+        passenger02.flightList.add(flight05);
         expected += "Flight Number 2 - Toronto->Paris 15:00-23:30.\n";
-        result = passenger.displayFlights();
+        result = passenger02.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
+
+        // Integration test: use bookFlight() to add to flightList followed by displayFlight()
+        Passenger passenger03 = new Passenger(3, null);
+        passenger03.bookFlight(flight04);
+        expected = "Flight Number 1 - Saskatoon->Toronto 11:00-13:00.\n";
+        result = passenger03.displayFlights();
+        if (!expected.equals(result)){
+            System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
+        }
+
+        // Integration test: use cancelFlight() to remove from flightList followed by displayFlight()
+        passenger03.cancelFlight(flight04);
+        expected = "No flights currently booked.";
+        result = passenger03.displayFlights();
+        if (!expected.equals(result)){
+            System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
+        }
+
     }
 }
 }

@@ -1,8 +1,8 @@
 public interface CustomerInterface {
 
-    public void bookFlight();
+    public void bookFlight(Flight flightToBook);
 
-    public void cancelFlight();
+    public void cancelFlight(Flight flightToCancel);
 
     public void displayFlights();
 

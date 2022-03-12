@@ -40,6 +40,7 @@ public class Passenger implements CustomerInterface{
 
     public String timeIntToString(int timeInt) {
         // Helper method for converting from 4 digit int=abcd to String="ab:cd"
+        // TODO: fix bug with numbers starting in a 0 digit
         Stack<Integer> s = new Stack<Integer>();
         String timeString = "";
         while (timeInt > 0){
@@ -59,14 +60,15 @@ public class Passenger implements CustomerInterface{
     public String displayFlights() {
         // Currently just returns a string representation for testing purposes
         // TODO: proper display in a gui format
+        // TODO: replace string representation with string representation from Flight class
         String flightsToBeDisplayed = "";
         if (this.flightList.size() == 0) {
             flightsToBeDisplayed += "No flights currently booked.";
         } else {
             for (int i=0; i < flightList.size(); i++) {
                 Flight cur = flightList.get(i);
-                flightsToBeDisplayed += "Flight Number "+cur.id+" - "+cur.from+"->"+cur.to+" "
-                                        +timeIntToString(cur.timeStart)+"-"+timeIntToString(cur.timeEnd)+".\n";
+                flightsToBeDisplayed += "Flight Number "+cur.getId()+" - "+cur.getFrom()+"->"+cur.getTo()+" "
+                                        +timeIntToString(cur.getTimeStart())+"-"+timeIntToString(cur.getTimeEnd())+".\n";
             }
         }
         return flightsToBeDisplayed;
@@ -142,6 +144,7 @@ public class Passenger implements CustomerInterface{
         }
 
         // Unit tests for displayFlights()
+        // TODO: replace expected strings with the new string representation from Flight class
         // Test displayFlights() with an empty flightList
         expected = "No flights currently booked.";
         result = passenger02.displayFlights();

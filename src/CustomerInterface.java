@@ -5,6 +5,4 @@ public interface CustomerInterface {
     public void cancelFlight(Flight flightToCancel);
 
     public String displayFlights();
-
-    public void displayFlights(int range);
 }

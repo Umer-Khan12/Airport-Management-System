@@ -72,11 +72,6 @@ public class Passenger implements CustomerInterface{
         return flightsToBeDisplayed;
     }
 
-    @Override
-    public void displayFlights(int range) {
-
-    }
-
     public static void main(String[] args) {
         // Tests for Passenger class
 
@@ -135,6 +130,8 @@ public class Passenger implements CustomerInterface{
         }
         catch (RuntimeException exception) {
             // expected
+        }
+
         Passenger passenger02 = new Passenger(2, null);
         // Unit test for timeIntToString()
         int time1 = 1645;
@@ -186,7 +183,5 @@ public class Passenger implements CustomerInterface{
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
-
     }
-}
 }

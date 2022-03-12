@@ -12,6 +12,10 @@ public class Passenger implements CustomerInterface{
         this.flightList = new ArrayList<>();
     }
 
+    /**
+     * method that adds a given flight to this passenger's flights
+     * @param flightToBook the flight being booked
+     */
     @Override
     public void bookFlight(Flight flightToBook) {
         if (flightToBook == null) {
@@ -25,6 +29,10 @@ public class Passenger implements CustomerInterface{
         }
     }
 
+    /**
+     * method that removes a given flight from this passenger's flights
+     * @param flightToCancel the flight being canceled
+     */
     @Override
     public void cancelFlight(Flight flightToCancel) {
         if (flightToCancel == null) {

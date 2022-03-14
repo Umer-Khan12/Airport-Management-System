@@ -170,5 +170,11 @@ public class Passenger implements CustomerInterface{
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
+
+        // An example of the displayFlights() method in action (console version)
+        passenger03.bookFlight(flight04);
+        passenger03.bookFlight(flight05);
+        passenger03.bookFlight(flight06);
+        System.out.println(passenger03.displayFlights());
     }
 }

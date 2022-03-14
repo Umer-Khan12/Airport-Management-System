@@ -1,4 +1,7 @@
+package com.company;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Passenger implements CustomerInterface{
     public int ticket;
@@ -39,12 +42,49 @@ public class Passenger implements CustomerInterface{
 
     @Override
     public void displayFlights() {
+        if(flightList.size() == 0){
+            System.out.println("No flights  currently booked.");
+        }
+        for (Flight f: flightList){
+            System.out.println("-----------------------------------------------------------------------------------");
+            System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+        }
+    }
+
+
+    public void displayFlights(String from, String to) {
+        if(flightList.size() == 0){
+            System.out.println("No Flights currently booked.");
+
+        }
+            for(Flight f: flightList){
+                if(f.getFrom().equals(from)){
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+                }
+                else if(f.getTo().equals(to)){
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+                }
+                else if(f.getTo().equals(to) && f.getFrom().equals(from)){
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+                }
+
+            }
 
     }
 
-    @Override
-    public void displayFlights(int range) {
-
+    public void displayFlights(int time){
+        if(flightList.size() == 0){
+            System.out.println("No Flights currently booked.");
+        }
+        for(Flight f: flightList){
+            if(f.getTimeStart() == time){
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -106,5 +146,11 @@ public class Passenger implements CustomerInterface{
         catch (RuntimeException exception) {
             // expected
         }
+        passenger01.bookFlight(flight02);
+        passenger01.bookFlight(flight01);
+        passenger01.bookFlight(flight03);
+
+
+
     }
 }

@@ -38,23 +38,6 @@ public class Passenger implements CustomerInterface{
         }
     }
 
-    public String timeIntToString(int timeInt) {
-        // Helper method for converting from 4 digit int=abcd to String="ab:cd"
-        Stack<Integer> s = new Stack<Integer>();
-        String timeString = "";
-        while (timeInt > 0){
-            s.push(timeInt % 10);
-            timeInt /= 10;
-        }
-        for (int i=0; i < 4; i++){
-            timeString += s.pop();
-            if (i == 1) {
-                timeString += ":";
-            }
-        }
-        return timeString;
-    }
-
     @Override
     public String displayFlights() {
         // Currently just returns a string representation for testing purposes
@@ -64,9 +47,13 @@ public class Passenger implements CustomerInterface{
             flightsToBeDisplayed += "No flights currently booked.";
         } else {
             for (int i=0; i < flightList.size(); i++) {
+                // Each new flight is displayed on its own line
                 Flight cur = flightList.get(i);
-                flightsToBeDisplayed += "Flight Number "+cur.id+" - "+cur.from+"->"+cur.to+" "
-                                        +timeIntToString(cur.timeStart)+"-"+timeIntToString(cur.timeEnd)+".\n";
+                // Add a colon between the 4 digit time string.
+                String curString = cur.toString();
+                flightsToBeDisplayed += curString.substring(0, curString.length()-8) + ":"
+                        + curString.substring(curString.length()-8, curString.length()-3) + ":"
+                        + curString.substring(curString.length()-3) + "\n";
             }
         }
         return flightsToBeDisplayed;
@@ -74,7 +61,6 @@ public class Passenger implements CustomerInterface{
 
     public static void main(String[] args) {
         // Tests for Passenger class
-
         Flight flight01 = new Flight(1, "Saskatoon", "Toronto", 1400, 1600);
         Passenger passenger01 = new Passenger(1, flight01);
 
@@ -133,18 +119,10 @@ public class Passenger implements CustomerInterface{
         }
 
         Passenger passenger02 = new Passenger(2, null);
-        // Unit test for timeIntToString()
-        int time1 = 1645;
-        String expected = "16:45";
-        String result = passenger02.timeIntToString(time1);
-        if (!expected.equals(result)){
-            System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
-        }
-
         // Unit tests for displayFlights()
         // Test displayFlights() with an empty flightList
-        expected = "No flights currently booked.";
-        result = passenger02.displayFlights();
+        String expected = "No flights currently booked.";
+        String result = passenger02.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
@@ -152,7 +130,7 @@ public class Passenger implements CustomerInterface{
         // Test displayFlights() with a single flight (and by manually adding to flightList)
         Flight flight04 = new Flight(1, "Saskatoon", "Toronto", 1100, 1300);
         passenger02.flightList.add(flight04);
-        expected = "Flight Number 1 - Saskatoon->Toronto 11:00-13:00.\n";
+        expected = "id: 1\tSaskatoon-->Toronto\t[11:00-13:00]\n";
         result = passenger02.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
@@ -161,7 +139,16 @@ public class Passenger implements CustomerInterface{
         // Test displayFlights() with multiple flights (and by manually adding to flightList)
         Flight flight05 = new Flight(2, "Toronto", "Paris", 1500, 2330);
         passenger02.flightList.add(flight05);
-        expected += "Flight Number 2 - Toronto->Paris 15:00-23:30.\n";
+        expected += "id: 2\tToronto-->Paris\t[15:00-23:30]\n";
+        result = passenger02.displayFlights();
+        if (!expected.equals(result)){
+            System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
+        }
+
+        // Test displayFlights() with an early hour flight
+        Flight flight06 = new Flight(3, "Paris", "Amsterdam", 5, 57);
+        passenger02.flightList.add(flight06);
+        expected += "id: 3\tParis-->Amsterdam\t[00:05-00:57]\n";
         result = passenger02.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
@@ -170,7 +157,7 @@ public class Passenger implements CustomerInterface{
         // Integration test: use bookFlight() to add to flightList followed by displayFlight()
         Passenger passenger03 = new Passenger(3, null);
         passenger03.bookFlight(flight04);
-        expected = "Flight Number 1 - Saskatoon->Toronto 11:00-13:00.\n";
+        expected = "id: 1\tSaskatoon-->Toronto\t[11:00-13:00]\n";
         result = passenger03.displayFlights();
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
@@ -183,5 +170,11 @@ public class Passenger implements CustomerInterface{
         if (!expected.equals(result)){
             System.out.println("Error, Expected:\n" + expected + "but got:\n" + result);
         }
+
+        // An example of the displayFlights() method in action (console version)
+        passenger03.bookFlight(flight04);
+        passenger03.bookFlight(flight05);
+        passenger03.bookFlight(flight06);
+        System.out.println(passenger03.displayFlights());
     }
 }

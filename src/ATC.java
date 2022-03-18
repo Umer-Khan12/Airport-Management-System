@@ -107,6 +107,7 @@ public class ATC extends Staff implements ATCInterface{
         }
 
         // Tests for addFlightToAirspace()
+        // Without the flight coming from a runway
         Flight flight145 = new Flight(145, "Saskatoon", "Toronto", 8, 130);
         atc.addFlightToAirspace(flight145);
         String expected = "Airspace: [Flight145]";
@@ -116,11 +117,41 @@ public class ATC extends Staff implements ATCInterface{
         }
 
         // Tests for addFlightToRunway()
+        // With the flight coming from the airspace
+        atc.addFlightToRunway(flight145, 1);
+        expected = "Runway 1: [Flight145]";
+        result = atc.getRunway(1).toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in addFlightToRunway(): Expected " + expected + " but got " + result);
+        }
+        expected = "Airspace: []";
+        result = atc.getAirspace().toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in addFlightToRunway(): Expected " + expected + " but got " + result);
+        }
+        // Without the flight coming from the airspace
+        Flight flight177 = new Flight(177, "Saskatoon", "Vancouver", 500, 655);
+        atc.addFlightToRunway(flight177, 1);
+        expected = "Runway 1: [Flight145, Flight177]";
+        result = atc.getRunway(1).toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in addFlightToRunway(): Expected " + expected + " but got " + result);
+        }
+
+        // Test addFlightToAirspace() with the flight coming from the runway
+
 
         // Tests for removeFlightFromAirspace()
+        // Valid input
+
+        // Invalid input
+
 
         // Tests for removeFlightFromRunway()
-        
+        // Valid input
+
+        // Invalid input
+
 
 
 

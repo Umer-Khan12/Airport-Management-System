@@ -9,4 +9,10 @@ public interface AdminInterface extends StaffInterface{
     public void removeStaff();
 
     public void updateFinances();
+
+    public void addFlightToDatabase();
+
+    public void removeFlightFromDatabase();
+
+    public void updateFlightInDatabase();
 }

@@ -43,6 +43,9 @@ public class AirportManagementSystem {
         "Remove Staff",
         "View Finances",
         "Update Finances",
+        "Add Flight To Database",
+        "Remove Flight From Database",
+        "Update Flight In Database",
         "Sign Out"};
 
         String[] atcActionChoices = {"Select a Task:",
@@ -176,6 +179,21 @@ public class AirportManagementSystem {
                         }
                         // update finances
                         else if (adminAction == 9) {
+                            // not implemented yet
+                            ams.gui.outputString("Feature not implemented yet.");
+                        }
+                        // add flight to database
+                        else if (adminAction == 10) {
+                            // not implemented yet
+                            ams.gui.outputString("Feature not implemented yet.");
+                        }
+                        // remove flight from database
+                        else if (adminAction == 11) {
+                            // not implemented yet
+                            ams.gui.outputString("Feature not implemented yet.");
+                        }
+                        // update flight in database
+                        else if (adminAction == 12) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }

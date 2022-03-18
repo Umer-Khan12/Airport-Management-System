@@ -34,22 +34,27 @@ public class ATC extends Staff implements ATCInterface{
 
     @Override
     public void addFlightToRunway(Flight flight, int runwayId) {
-
+        Runway destinationRunway = getRunway(runwayId);
+        destinationRunway.addFlight(flight);
+        removeFlightFromAirspace(flight);
     }
 
     @Override
     public void removeFlightFromAirspace(Flight flight) {
-
+        if (airspace.getQueue().contains(flight)) {
+            airspace.removeFlight(flight);
+        }
     }
 
     @Override
     public void removeFlightFromRunway(Flight flight) {
-
-    }
-
-    @Override
-    public void updateFlight() {
-
+        for (int i=0; i < runways.size(); i++) {
+            Runway cur = runways.get(i);
+            if (cur.getQueue().contains(flight)) {
+                cur.removeFlight(flight);
+                return;
+            }
+        }
     }
 
     @Override
@@ -110,7 +115,16 @@ public class ATC extends Staff implements ATCInterface{
             System.out.println("Error in addFlightToAirspace(): Expected " + expected + " but got " + result);
         }
 
-        // REPL
-        // TODO: Implement REPL for ATC
+        // Tests for addFlightToRunway()
+
+        // Tests for removeFlightFromAirspace()
+
+        // Tests for removeFlightFromRunway()
+        
+
+
+
+        // REPL or GUI
+        // TODO: Implement REPL or GUI for ATC
     }
 }

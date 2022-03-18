@@ -77,11 +77,6 @@ public class ATC extends Staff implements ATCInterface{
 
     }
 
-    @Override
-    public void viewFlightQueue(int runwayId) {
-
-    }
-
     public static void main(String[] args) {
         // Unit Tests
         ATC atc = new ATC(1, "Ken", "Air Traffic Controller");

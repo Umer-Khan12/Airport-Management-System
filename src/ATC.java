@@ -63,7 +63,7 @@ public class ATC extends Staff implements ATCInterface{
     }
 
     @Override
-    public void viewFlightQueue(Runway runway) {
+    public void viewFlightQueue(int runwayId) {
 
     }
 
@@ -71,12 +71,11 @@ public class ATC extends Staff implements ATCInterface{
         // Unit Tests
         // Tests for addFlightToAirspace()
         ATC atc = new ATC(1, "Ken", "Air Traffic Controller");
-        Flight flight1 = new Flight(1, "Saskatoon", "Toronto", 8, 130);
-        atc.addFlightToAirspace(flight1);
-        Runway expected = new Runway(-1);
-        expected.addFlight(flight1);
-        Runway result = atc.getAirspace();
-        if (!expected.equals(result)) {
+        Flight flight145 = new Flight(145, "Saskatoon", "Toronto", 8, 130);
+        atc.addFlightToAirspace(flight145);
+        String expected = "Airspace: [Flight145]";
+        String result = atc.getAirspace().toString();
+        if (!result.equals(expected)) {
             System.out.println("Error in addFlightToAirspace(): Expected " + expected + " but got " + result);
         }
 

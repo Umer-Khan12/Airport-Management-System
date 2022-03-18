@@ -18,5 +18,5 @@ public interface ATCInterface extends StaffInterface{
 
     public void executeProtocol();
 
-    public void viewFlightQueue(Runway runway);
+    public void viewFlightQueue(int runwayId);
 }

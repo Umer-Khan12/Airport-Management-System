@@ -39,7 +39,13 @@ public class Runway {
 
     @Override
     public String toString() {
-        String s = "Runway "+this.id+": [";
+        String s = "";
+        if (this.id == -1) {
+            // If the id is -1 then it represents airspace rather than a runway (from ATC class)
+            s += "Airspace: [";
+        } else {
+            s += "Runway "+this.id+": [";
+        }
         if (this.queue.isEmpty()) {return s+"]";}
         else{
             for (int i=0; i < this.queue.size(); i++) {
@@ -119,6 +125,14 @@ public class Runway {
         runway.removeFlight(flight1);
         expectedString = "Runway 1: []";
         resultString = runway.toString();
+        if (!resultString.equals(expectedString)) {
+            System.out.println("Error in toString(): Expected " + expectedString + " but got " + resultString);
+        }
+        // Test ToString() for airspace case
+        Runway airspace = new Runway(-1);
+        airspace.addFlight(flight2);
+        expectedString = "Airspace: [Flight2]";
+        resultString = airspace.toString();
         if (!resultString.equals(expectedString)) {
             System.out.println("Error in toString(): Expected " + expectedString + " but got " + resultString);
         }

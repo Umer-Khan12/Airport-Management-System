@@ -2,71 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ca6ce2d-9844-479d-9181-164115aef252" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ATC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ATCInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AdminInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AirportManagementSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomerInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DialogIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Flight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Passenger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Protocol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Runway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Staff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StaffInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmpt-370-group41.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cmpt-370-group41.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/ATC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/ATCInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/Admin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/AdminInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/AirportManagementSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/CustomerInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/Flight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/Passenger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/Protocol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/Runway.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/Staff.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cmpt370group41/StaffInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/cmpt370group41/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/ATC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/ATCInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/AdminInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/AirportManagementSystem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/CustomerInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/Flight.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/Passenger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/Protocol.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/Runway.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/Staff.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/StaffInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/cmpt370group41/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AirportManagementSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AirportManagementSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DialogIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DialogIO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,5 +111,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

@@ -38,6 +38,13 @@ public class DialogIO {
         JOptionPane.showMessageDialog(null, outString);
     }
 
+    /**
+     * Display the list of options and read an integer that is the index of one the options.
+     * Index 0 is the default option.
+     * @param options an array with the options that are presented to the user
+     * @return the integer specifying the array index for the option selected by the user,
+     * if the cancel or X button is clicked, return -1
+     */
     public int readChoice(String[] options) {
         String selection = (String) JOptionPane.showInputDialog(null,
                 "Select an option", // prompt
@@ -47,7 +54,7 @@ public class DialogIO {
                 options, // choices
                 options[0]); // initial selection
         if (selection == null) {
-            return 0; // either cancel or X button was clicked
+            return -1; // either cancel or X button was clicked
         }
         for (int i = 0; i < options.length; i++) {
             if (selection.equals(options[i])) {

@@ -25,6 +25,18 @@ public class Runway {
         }
     }
 
+    public void removeFlight(Flight flight) {
+        if (flight == null) {
+            throw new RuntimeException("Error: Flight to be removed is invalid.");
+        }
+        else if (!queue.contains(flight)) {
+            throw new RuntimeException("Error: Tried to remove a flight that doesn't exist on the runway.");
+        }
+        else {
+            this.queue.remove(flight);
+        }
+    }
+
     public static void main(String[] args) {
         // Unit Tests
         Runway runway = new Runway(1);
@@ -49,13 +61,35 @@ public class Runway {
         catch (RuntimeException exception) {
             // Expected
         }
-        // Test getQueue
+        // Test getQueue()
         Flight flight2 = new Flight(2, "Toronto", "Paris", 330, 1030);
         runway.addFlight(flight2);
         ArrayList<Flight> expected = new ArrayList<>();
         expected.add(flight1);
         expected.add(flight2);
         ArrayList<Flight> result = runway.getQueue();
+        if (!result.equals(expected)) {
+            System.out.println("Error in getQueue: Expected " + expected + " but got " + result);
+        }
+        // Test removeFlight()
+        // With valid input
+        try {
+            runway.removeFlight(flight2);
+        }
+        catch (RuntimeException exception) {
+            System.out.println("Error in removeFlight(): Exception thrown for valid input.");
+        }
+        // With invalid input
+        try {
+            runway.removeFlight(null);
+            System.out.println("Error in removeFlight(): Exception not thrown for invalid input.");
+        }
+        catch (RuntimeException exception) {
+            // Expected
+        }
+        // Test with getQueue() to see if the queue has been updated as it should have
+        expected.remove(flight2);
+        result = runway.getQueue();
         if (!result.equals(expected)) {
             System.out.println("Error in getQueue: Expected " + expected + " but got " + result);
         }

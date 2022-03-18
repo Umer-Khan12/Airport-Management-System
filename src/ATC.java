@@ -52,7 +52,7 @@ public class ATC extends Staff implements ATCInterface{
             Runway cur = runways.get(i);
             if (cur.getQueue().contains(flight)) {
                 cur.removeFlight(flight);
-                return;
+                break;
             }
         }
     }
@@ -173,10 +173,20 @@ public class ATC extends Staff implements ATCInterface{
         }
 
         // Tests for removeFlightFromRunway()
-        // Valid input
-
         // Invalid input
-
+        atc.removeFlightFromRunway(flight145);
+        expected = "Runway 1: [Flight177]";
+        result = atc.getRunway(1).toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in removeFlightFromRunway(): Expected " + expected + " but got " + result);
+        }
+        // Valid input
+        atc.removeFlightFromRunway(flight177);
+        expected = "Runway 1: []";
+        result = atc.getRunway(1).toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in removeFlightFromRunway(): Expected " + expected + " but got " + result);
+        }
 
 
 

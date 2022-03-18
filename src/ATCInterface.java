@@ -1,10 +1,12 @@
 public interface ATCInterface extends StaffInterface{
 
-    public void addFlightToAirspace();
+    public void addFlightToAirspace(Flight flight);
 
-    public void addFlightToRunway();
+    public void addFlightToRunway(Flight flight, int runwayId);
 
-    public void removeFlight();
+    public void removeFlightFromAirspace(Flight flight);
+
+    public void removeFlightFromRunway(Flight flight);
 
     public void updateFlight();
 

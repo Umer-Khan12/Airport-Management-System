@@ -37,6 +37,22 @@ public class Runway {
         }
     }
 
+    @Override
+    public String toString() {
+        String s = "Runway "+this.id+": [";
+        if (this.queue.isEmpty()) {return s+"]";}
+        else{
+            for (int i=0; i < this.queue.size(); i++) {
+                if (i==this.queue.size()-1) {
+                    s += "Flight" + this.queue.get(i).getId() + "]";
+                } else {
+                    s += "Flight" + this.queue.get(i).getId() + ", ";
+                }
+            }
+        }
+        return s;
+    }
+
     public static void main(String[] args) {
         // Unit Tests
         Runway runway = new Runway(1);
@@ -92,6 +108,19 @@ public class Runway {
         result = runway.getQueue();
         if (!result.equals(expected)) {
             System.out.println("Error in getQueue: Expected " + expected + " but got " + result);
+        }
+        // Test toString() with nonempty runway
+        String expectedString = "Runway 1: [Flight1]";
+        String resultString = runway.toString();
+        if (!resultString.equals(expectedString)) {
+            System.out.println("Error in toString(): Expected " + expectedString + " but got " + resultString);
+        }
+        // Test toString() with empty runway
+        runway.removeFlight(flight1);
+        expectedString = "Runway 1: []";
+        resultString = runway.toString();
+        if (!resultString.equals(expectedString)) {
+            System.out.println("Error in toString(): Expected " + expectedString + " but got " + resultString);
         }
     }
 }

@@ -6,20 +6,34 @@ public class ATC extends Staff implements ATCInterface{
 
     public ATC(int id, String name, String job) {
         super(id, name, job);
+        this.airspace = new Runway(-1); // Airspace will be represented with id=-1
+        this.runways = new ArrayList<Runway>();
+    }
+
+    // Accessors
+    public Runway getAirspace() {return airspace;}
+    public ArrayList<Runway> getRunways() {return runways;}
+
+    @Override
+    public void addFlightToAirspace(Flight flight) {
+        // Appropriate Exceptions are thrown by the Runway class
+        airspace.addFlight(flight);
+        // Since a flight can only be either in the airspace or on a runway, remove it from a runway if it's there
+        removeFlightFromRunway(flight);
     }
 
     @Override
-    public void addFlightToAirspace() {
+    public void addFlightToRunway(Flight flight, int runwayId) {
 
     }
 
     @Override
-    public void addFlightToRunway() {
+    public void removeFlightFromAirspace(Flight flight) {
 
     }
 
     @Override
-    public void removeFlight() {
+    public void removeFlightFromRunway(Flight flight) {
 
     }
 
@@ -53,5 +67,20 @@ public class ATC extends Staff implements ATCInterface{
 
     }
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        // Unit Tests
+        // Tests for addFlightToAirspace()
+        ATC atc = new ATC(1, "Ken", "Air Traffic Controller");
+        Flight flight1 = new Flight(1, "Saskatoon", "Toronto", 8, 130);
+        atc.addFlightToAirspace(flight1);
+        Runway expected = new Runway(-1);
+        expected.addFlight(flight1);
+        Runway result = atc.getAirspace();
+        if (!expected.equals(result)) {
+            System.out.println("Error in addFlightToAirspace(): Expected " + expected + " but got " + result);
+        }
+
+        // REPL
+        // TODO: Implement REPL for ATC
+    }
 }

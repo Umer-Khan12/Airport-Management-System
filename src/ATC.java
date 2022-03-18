@@ -15,6 +15,16 @@ public class ATC extends Staff implements ATCInterface{
     public ArrayList<Runway> getRunways() {return runways;}
 
     @Override
+    public Runway getRunway(int runwayId) {
+        for (int i=0; i < runways.size(); i++) {
+            if (runways.get(i).getId() == runwayId) {
+                return runways.get(i);
+            }
+        }
+        throw new RuntimeException("Error: Runway with id " + runwayId + " doesn't exist.");
+    }
+
+    @Override
     public void addFlightToAirspace(Flight flight) {
         // Appropriate Exceptions are thrown by the Runway class
         airspace.addFlight(flight);
@@ -69,8 +79,29 @@ public class ATC extends Staff implements ATCInterface{
 
     public static void main(String[] args) {
         // Unit Tests
-        // Tests for addFlightToAirspace()
         ATC atc = new ATC(1, "Ken", "Air Traffic Controller");
+        // Tests for getRunway
+        Runway runway1 = new Runway(1);
+        Runway runway2 = new Runway(2);
+        ArrayList<Runway> runways = new ArrayList<>();
+        runways.add(runway1);
+        runways.add(runway2);
+        atc.runways = runways;
+        // Test invalid input
+        try {
+            atc.getRunway(500);
+            System.out.println("Error: No exception thrown for invalid input.");
+        }
+        catch (RuntimeException exception) {
+            // Expected
+        }
+        // Test valid input
+        Runway resultRunway = atc.getRunway(2);
+        if (!resultRunway.equals(runway2)) {
+            System.out.println("Error in getRunway(): Expected " + runway2 + " but got " + resultRunway);
+        }
+
+        // Tests for addFlightToAirspace()
         Flight flight145 = new Flight(145, "Saskatoon", "Toronto", 8, 130);
         atc.addFlightToAirspace(flight145);
         String expected = "Airspace: [Flight145]";

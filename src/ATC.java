@@ -152,10 +152,25 @@ public class ATC extends Staff implements ATCInterface{
         }
 
         // Tests for removeFlightFromAirspace()
-        // Valid input
-
         // Invalid input
-
+        atc.removeFlightFromAirspace(flight177);
+        expected = "Airspace: [Flight145]";
+        result = atc.getAirspace().toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in removeFlightFromAirspace(): Expected " + expected + " but got " + result);
+        }
+        expected = "Runway 1: [Flight177]";
+        result = atc.getRunway(1).toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in removeFlightFromAirspace(): Expected " + expected + " but got " + result);
+        }
+        // Valid input
+        atc.removeFlightFromAirspace(flight145);
+        expected = "Airspace: []";
+        result = atc.getAirspace().toString();
+        if (!result.equals(expected)) {
+            System.out.println("Error in removeFlightFromAirspace(): Expected " + expected + " but got " + result);
+        }
 
         // Tests for removeFlightFromRunway()
         // Valid input

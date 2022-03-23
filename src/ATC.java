@@ -3,16 +3,19 @@ import java.util.ArrayList;
 public class ATC extends Staff implements ATCInterface{
     private Runway airspace; // Technically not a runway but works like a runway
     private ArrayList<Runway> runways;
+    private ArrayList<Protocol> protocols;
 
     public ATC(int id, String name, String job) {
         super(id, name, job);
         this.airspace = new Runway(-1); // Airspace will be represented with id=-1
         this.runways = new ArrayList<Runway>();
+        this.protocols = new ArrayList<>();
     }
 
     // Accessors
     public Runway getAirspace() {return airspace;}
     public ArrayList<Runway> getRunways() {return runways;}
+    public ArrayList<Protocol> getProtocols() {return protocols;}
 
     @Override
     public Runway getRunway(int runwayId) {
@@ -58,23 +61,46 @@ public class ATC extends Staff implements ATCInterface{
     }
 
     @Override
-    public void addProtocol() {
-
+    public void addProtocol(int id, String[] actions) {
+        Protocol protocolToAdd = new Protocol(id);
+        for (String action : actions) {
+            protocolToAdd.getActionQueue().add(action);
+        }
+        this.protocols.add(protocolToAdd);
     }
 
     @Override
-    public void removeProtocol() {
-
+    public void removeProtocol(int id) {
+        for (Protocol p : this.protocols) {
+            if (p.getId() == id) {
+                this.protocols.remove(p);
+                return;
+            }
+        }
+        throw new RuntimeException("Error: Protocol with id " + id + " does not exist.");
     }
 
     @Override
-    public void updateProtocol() {
-
+    public void updateProtocol(int id, String[] actions) {
+        for (Protocol p : this.protocols) {
+            if (p.getId() == id) {
+                removeProtocol(id);
+                addProtocol(id, actions);
+                return;
+            }
+        }
+        throw new RuntimeException("Error: Protocol with id " + id + " does not exist.");
     }
 
     @Override
-    public void executeProtocol() {
-
+    public Protocol executeProtocol(int id) {
+        for (Protocol p : this.protocols) {
+            if (p.getId() == id) {
+                // Protocol object will be displayed using the GUI in the AirportManagementSystem class
+                return p;
+            }
+        }
+        throw new RuntimeException("Error: Protocol with id " + id + " does not exist.");
     }
 
     public static void main(String[] args) {
@@ -181,6 +207,78 @@ public class ATC extends Staff implements ATCInterface{
         result = atc.getRunway(1).toString();
         if (!result.equals(expected)) {
             System.out.println("Error in removeFlightFromRunway(): Expected " + expected + " but got " + result);
+        }
+
+        // Tests for addProtocol()
+        String[] actions1 = {"Direction 1", "Direction 2"};
+        atc.addProtocol(1, actions1);
+        if (!atc.getProtocols().get(0).getActionQueue().contains("Direction 1")) {
+            System.out.println("Error in addProtocol(): action queue is not initialized correctly");
+        }
+        if (!atc.getProtocols().get(0).getActionQueue().contains("Direction 2")) {
+            System.out.println("Error in addProtocol(): action queue is not initialized correctly");
+        }
+        int expectedId = 1;
+        int resultId = atc.getProtocols().get(0).getId();
+        if (resultId != expectedId) {
+            System.out.println("Error in addProtocol(): Expected id " + expectedId + " but got " + resultId);
+        }
+        String[] actions3 = {"Placeholder action", "Placeholder action 2", "Placeholder action 3"};
+        atc.addProtocol(3, actions3);
+        if (atc.getProtocols().get(1).getActionQueue().size() != 3) {
+            System.out.println("Error in addProtocol(): action queue has wrong number of actions");
+        }
+
+        // Tests for removeProtocol()
+        try {
+            atc.removeProtocol(1);
+        }
+        catch (RuntimeException exception) {
+            System.out.println("Error in removeProtocol(): threw exception for valid input");
+        }
+        try {
+            atc.removeProtocol(2);
+            System.out.println("Error in removeProtocol(): did not throw exception for invalid input");
+        }
+        catch (RuntimeException exception) {
+            // expected
+        }
+
+        // Tests for updateProtocol()
+        String[] newActions3 = {"Remove flight from runway", "Add flight to runway"};
+        try {
+            atc.updateProtocol(3, newActions3);
+            if (atc.getProtocols().get(0).getActionQueue().size() != 2) {
+                System.out.println("Error in updateProtocol(): action queue not updated correctly");
+            }
+        }
+        catch (RuntimeException exception) {
+            System.out.println("Error in updateProtocol(): threw exception for valid input");
+        }
+        try {
+            atc.updateProtocol(4, newActions3);
+            System.out.println("Error in updateProtocol(): did not throw exception for invalid input");
+        }
+        catch (RuntimeException exception) {
+            // expected
+        }
+
+        // Tests for executeProtocol()
+        try {
+            Protocol executedProtocol = atc.executeProtocol(3);
+            if (executedProtocol.getId() != 3) {
+                System.out.println("Error in executeProtocol(): protocol not returned correctly");
+            }
+        }
+        catch (RuntimeException exception) {
+            System.out.println("Error in executeProtocol(): threw exception for valid input");
+        }
+        try {
+            Protocol invalidProtocol = atc.executeProtocol(5);
+            System.out.println("Error in executeProtocol(): did not throw exception for invalid input");
+        }
+        catch (RuntimeException exception) {
+            // expected
         }
 
 

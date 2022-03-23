@@ -49,5 +49,20 @@ public class Admin extends Staff implements AdminInterface{
 
     }
 
+    @Override
+    public void addFlightToDatabase() {
+
+    }
+
+    @Override
+    public void removeFlightFromDatabase() {
+
+    }
+
+    @Override
+    public void updateFlightInDatabase() {
+
+    }
+
     public static void main(String[] args) {}
 }

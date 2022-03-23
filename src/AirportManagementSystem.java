@@ -53,7 +53,6 @@ public class AirportManagementSystem {
         "View Incoming Flights",
         "View Outgoing Flights",
         "Change Passenger's Flight",
-        "Get Runway",
         "Add Flight to Airspace",
         "Add Flight to Runway",
         "Remove Flight from Airspace",
@@ -63,6 +62,9 @@ public class AirportManagementSystem {
         "Update Protocol",
         "Execute Protocol",
         "Sign Out"};
+
+        // initialize user types
+        ATC atc = new ATC(1, "Ken", "Air Traffic Controller");
 
         AirportManagementSystem ams = new AirportManagementSystem();
         ams.gui.outputString("Welcome to the Airport Management System");
@@ -232,50 +234,78 @@ public class AirportManagementSystem {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // get runway
+                        // add flight to airspace
                         else if (atcAction == 5) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // add flight to airspace
+                        // add flight to runway
                         else if (atcAction == 6) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // add flight to runway
+                        // remove flight from airspace
                         else if (atcAction == 7) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // remove flight from airspace
+                        // remove flight from runway
                         else if (atcAction == 8) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // remove flight from runway
-                        else if (atcAction == 9) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
-                        }
                         // add protocol
-                        else if (atcAction == 10) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                        else if (atcAction == 9) {
+                            int protocolID = ams.gui.readInt("Enter the ID of the protocol to add:");
+                            int numberActions = ams.gui.readInt("Enter the number of actions the protocol has:");
+                            String[] actions = new String[numberActions];
+                            for (int i = 1; i <= numberActions; i++) {
+                                actions[i - 1] = ams.gui.readString("Enter action " + i + " out of " + numberActions + ":");
+                            }
+                            atc.addProtocol(protocolID, actions);
+                            ams.gui.outputString("Protocol added.");
                         }
                         // remove protocol
-                        else if (atcAction == 11) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                        else if (atcAction == 10) {
+                            int protocolRemoveID = ams.gui.readInt("Enter the ID of the protocol to remove:");
+                            try {
+                                atc.removeProtocol(protocolRemoveID);
+                                ams.gui.outputString("Protocol removed.");
+                            }
+                            catch (RuntimeException exception) {
+                                ams.gui.outputString("Protocol with ID " + protocolRemoveID + " does not exist.");
+                            }
                         }
                         // update protocol
-                        else if (atcAction == 12) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                        else if (atcAction == 11) {
+                            int protocolUpdateID = ams.gui.readInt("Enter the ID of the protocol to update:");
+                            try {
+                                atc.removeProtocol(protocolUpdateID);
+                                int newNumberActions = ams.gui.readInt("Enter the number of actions the protocol has:");
+                                String[] newActions = new String[newNumberActions];
+                                for (int i = 1; i <= newNumberActions; i++) {
+                                    newActions[i - 1] = ams.gui.readString("Enter action " + i + " out of " + newNumberActions + ":");
+                                }
+                                atc.addProtocol(protocolUpdateID, newActions);
+                                ams.gui.outputString("Protocol updated.");
+                            }
+                            catch (RuntimeException exception) {
+                                ams.gui.outputString("Protocol with ID " + protocolUpdateID + " does not exist.");
+                            }
                         }
                         // execute protocol
-                        else if (atcAction == 13) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                        else if (atcAction == 12) {
+                            int protocolExecuteID = ams.gui.readInt("Enter the ID of the protocol to execute:");
+                            try {
+                                Protocol protocolExecute = atc.executeProtocol(protocolExecuteID);
+                                for (String actionExecute : protocolExecute.getActionQueue()) {
+                                    ams.gui.outputString(actionExecute);
+                                }
+                                ams.gui.outputString("Protocol executed.");
+                            }
+                            catch (RuntimeException exception) {
+                                ams.gui.outputString("Protocol with ID " + protocolExecuteID + " does not exist.");
+                            }
                         }
                         // sign out
                         else if (atcAction == -1 || atcAction == atcActionChoices.length - 1) {

@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ca6ce2d-9844-479d-9181-164115aef252" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/ATC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/ATC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/ATCInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/ATCInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/AdminInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/AdminInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/AirportManagementSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/AirportManagementSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/DialogIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/DialogIO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/Flight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/Flight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/Passenger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/Passenger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/Protocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/Protocol.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ATC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ATC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ATCInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ATCInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AirportManagementSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AirportManagementSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

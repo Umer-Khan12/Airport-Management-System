@@ -10,11 +10,11 @@ public interface ATCInterface extends StaffInterface{
 
     public void removeFlightFromRunway(Flight flight);
 
-    public void addProtocol();
+    public void addProtocol(int id, String[] actions);
 
-    public void removeProtocol();
+    public void removeProtocol(int id);
 
-    public void updateProtocol();
+    public void updateProtocol(int id, String[] actions);
 
-    public void executeProtocol();
+    public Protocol executeProtocol(int id);
 }

@@ -73,12 +73,12 @@ public class Flight {
             System.err.println("Error: Flight constructor didn't raise an error when given a negative id value.");
         } catch (IllegalArgumentException e) {}
         try {
-            Flight invalidTimes = new Flight(-42, "One", "Two", 72, 0);
-            System.err.println("Error: Flight constructor didn't raise an error when given a invalid starting time.");
+            Flight invalidTimes = new Flight(42, "One", "Two", 72, 0);
+            System.err.println("Error: Flight constructor didn't raise an error when given an invalid starting time.");
         } catch (IllegalArgumentException e) {}
         try {
-            Flight invalidTimes = new Flight(-42, "One", "Two", 2000, 2292);
-            System.err.println("Error: Flight constructor didn't raise an error when given a invalid ending time.");
+            Flight invalidTimes = new Flight(42, "One", "Two", 2000, 2292);
+            System.err.println("Error: Flight constructor didn't raise an error when given an invalid ending time.");
         } catch (IllegalArgumentException e) {}
     }
 }

@@ -53,7 +53,6 @@ public class AirportManagementSystem {
         "View Incoming Flights",
         "View Outgoing Flights",
         "Change Passenger's Flight",
-        "Get Runway",
         "Add Flight to Airspace",
         "Add Flight to Runway",
         "Remove Flight from Airspace",
@@ -232,48 +231,43 @@ public class AirportManagementSystem {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // get runway
+                        // add flight to airspace
                         else if (atcAction == 5) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // add flight to airspace
+                        // add flight to runway
                         else if (atcAction == 6) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // add flight to runway
+                        // remove flight from airspace
                         else if (atcAction == 7) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // remove flight from airspace
+                        // remove flight from runway
                         else if (atcAction == 8) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // remove flight from runway
+                        // add protocol
                         else if (atcAction == 9) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // add protocol
+                        // remove protocol
                         else if (atcAction == 10) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // remove protocol
+                        // update protocol
                         else if (atcAction == 11) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }
-                        // update protocol
-                        else if (atcAction == 12) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
-                        }
                         // execute protocol
-                        else if (atcAction == 13) {
+                        else if (atcAction == 12) {
                             // not implemented yet
                             ams.gui.outputString("Feature not implemented yet.");
                         }

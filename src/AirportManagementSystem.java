@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class AirportManagementSystem {
     DialogIO gui;
 
@@ -65,6 +67,18 @@ public class AirportManagementSystem {
 
         // initialize user types
         ATC atc = new ATC(1, "Ken", "Air Traffic Controller");
+        // ATC is initialized with one runway
+        Runway runway = new Runway(1);
+        atc.getRunways().add(runway);
+
+        // initialize flight database with some demo flights
+        ArrayList<Flight> database = new ArrayList<>();
+        Flight demoFlight1 = new Flight(1, "Saskatoon", "Vancouver", 1300, 1500);
+        Flight demoFlight2 = new Flight(2, "Regina", "Montreal", 1800, 2000);
+        Flight demoFlight3 = new Flight(3, "Calgary", "Winnipeg", 1100, 1200);
+        database.add(demoFlight1);
+        database.add(demoFlight2);
+        database.add(demoFlight3);
 
         AirportManagementSystem ams = new AirportManagementSystem();
         ams.gui.outputString("Welcome to the Airport Management System");
@@ -236,34 +250,101 @@ public class AirportManagementSystem {
                         }
                         // add flight to airspace
                         else if (atcAction == 5) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                            int flightToAdd = ams.gui.readInt("Enter the ID of the flight to add to airspace:");
+                            boolean flightAdded = false;
+                            for (Flight flight : database) {
+                                if (flight.getId() == flightToAdd) {
+                                    try {
+                                        atc.addFlightToAirspace(flight);
+                                        ams.gui.outputString("Flight added to airspace.");
+                                    }
+                                    catch (RuntimeException exception) {
+                                        ams.gui.outputString("Flight is already in airspace.");
+                                    }
+                                    flightAdded = true;
+                                    break;
+                                }
+                            }
+                            if (!flightAdded) {
+                                ams.gui.outputString("Flight with ID " + flightToAdd + " does not exist.");
+                            }
                         }
-                        // add flight to runway
+                        // add flight to runway, currently only implemented for cases with one runway
                         else if (atcAction == 6) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                            int flightToAdd = ams.gui.readInt("Enter the ID of the flight to add to runway:");
+                            boolean flightAdded = false;
+                            for (Flight flight : database) {
+                                if (flight.getId() == flightToAdd) {
+                                    try {
+                                        atc.addFlightToRunway(flight, 1);
+                                        ams.gui.outputString("Flight added to runway.");
+                                    }
+                                    catch (RuntimeException exception) {
+                                        ams.gui.outputString("Flight is already on runway.");
+                                    }
+                                    flightAdded = true;
+                                    break;
+                                }
+                            }
+                            if (!flightAdded) {
+                                ams.gui.outputString("Flight with ID " + flightToAdd + " does not exist.");
+                            }
                         }
                         // remove flight from airspace
                         else if (atcAction == 7) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                            int flightToRemove = ams.gui.readInt("Enter the ID of the flight to remove from airspace:");
+                            boolean flightRemoved = false;
+                            for (Flight flight : database) {
+                                if (flight.getId() == flightToRemove) {
+                                    atc.removeFlightFromAirspace(flight);
+                                    ams.gui.outputString("Flight removed from airspace.");
+                                    flightRemoved = true;
+                                    break;
+                                }
+                            }
+                            if (!flightRemoved) {
+                                ams.gui.outputString("Flight with ID " + flightToRemove + " does not exist.");
+                            }
                         }
                         // remove flight from runway
                         else if (atcAction == 8) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                            int flightToRemove = ams.gui.readInt("Enter the ID of the flight to remove from runway:");
+                            boolean flightRemoved = false;
+                            for (Flight flight : database) {
+                                if (flight.getId() == flightToRemove) {
+                                    atc.removeFlightFromRunway(flight);
+                                    ams.gui.outputString("Flight removed from runway.");
+                                    flightRemoved = true;
+                                    break;
+                                }
+                            }
+                            if (!flightRemoved) {
+                                ams.gui.outputString("Flight with ID " + flightToRemove + " does not exist.");
+                            }
                         }
                         // add protocol
                         else if (atcAction == 9) {
                             int protocolID = ams.gui.readInt("Enter the ID of the protocol to add:");
-                            int numberActions = ams.gui.readInt("Enter the number of actions the protocol has:");
-                            String[] actions = new String[numberActions];
-                            for (int i = 1; i <= numberActions; i++) {
-                                actions[i - 1] = ams.gui.readString("Enter action " + i + " out of " + numberActions + ":");
+                            // check for duplicate ID
+                            boolean validID = true;
+                            for (Protocol p : atc.getProtocols()) {
+                                if (p.getId() == protocolID) {
+                                    validID = false;
+                                    break;
+                                }
                             }
-                            atc.addProtocol(protocolID, actions);
-                            ams.gui.outputString("Protocol added.");
+                            if (validID) {
+                                int numberActions = ams.gui.readInt("Enter the number of actions the protocol has:");
+                                String[] actions = new String[numberActions];
+                                for (int i = 1; i <= numberActions; i++) {
+                                    actions[i - 1] = ams.gui.readString("Enter action " + i + " out of " + numberActions + ":");
+                                }
+                                atc.addProtocol(protocolID, actions);
+                                ams.gui.outputString("Protocol added.");
+                            }
+                            else {
+                                ams.gui.outputString("Protocol with ID " + protocolID + " already exists.");
+                            }
                         }
                         // remove protocol
                         else if (atcAction == 10) {

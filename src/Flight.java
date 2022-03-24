@@ -1,5 +1,3 @@
-package com.company;
-
 public class Flight {
     private int id;
     private String from;

@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9ca6ce2d-9844-479d-9181-164115aef252" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cmpt-370-group41/AirportManagementSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt-370-group41/AirportManagementSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ATC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ATC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AirportManagementSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AirportManagementSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdminInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +64,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DialogIO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DialogIO" />
+    <configuration name="Flight" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Flight" />
+      <module name="cmpt-370-group41" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Passenger" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Passenger" />
       <module name="cmpt-370-group41" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -79,20 +85,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Staff" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Staff" />
-      <module name="cmpt-370-group41" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.AirportManagementSystem" />
-        <item itemvalue="Application.ATC" />
-        <item itemvalue="Application.DialogIO" />
-        <item itemvalue="Application.Staff" />
         <item itemvalue="Application.Runway" />
+        <item itemvalue="Application.ATC" />
+        <item itemvalue="Application.Passenger" />
+        <item itemvalue="Application.Flight" />
       </list>
     </recent_temporary>
   </component>

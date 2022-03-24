@@ -1,5 +1,7 @@
+package com.company;
+
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.Arrays;
 
 public class Passenger implements CustomerInterface{
     public int ticket;
@@ -47,24 +49,50 @@ public class Passenger implements CustomerInterface{
     }
 
     @Override
-    public String displayFlights() {
-        // Currently just returns a string representation for testing purposes
-        // TODO: proper display in a gui format
-        String flightsToBeDisplayed = "";
-        if (this.flightList.size() == 0) {
-            flightsToBeDisplayed += "No flights currently booked.";
-        } else {
-            for (int i=0; i < flightList.size(); i++) {
-                // Each new flight is displayed on its own line
-                Flight cur = flightList.get(i);
-                // Add a colon between the 4 digit time string.
-                String curString = cur.toString();
-                flightsToBeDisplayed += curString.substring(0, curString.length()-8) + ":"
-                        + curString.substring(curString.length()-8, curString.length()-3) + ":"
-                        + curString.substring(curString.length()-3) + "\n";
+    public void displayFlights() {
+        if(flightList.size() == 0){
+            System.out.println("No flights  currently booked.");
+        }
+        for (Flight f: flightList){
+            System.out.println("-----------------------------------------------------------------------------------");
+            System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+        }
+    }
+
+
+    public void displayFlights(String from, String to) {
+        if(flightList.size() == 0){
+            System.out.println("No Flights currently booked.");
+
+        }
+            for(Flight f: flightList){
+                if(f.getFrom().equals(from)){
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+                }
+                else if(f.getTo().equals(to)){
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+                }
+                else if(f.getTo().equals(to) && f.getFrom().equals(from)){
+                    System.out.println("-----------------------------------------------------------------------------------");
+                    System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
+                }
+
+            }
+
+    }
+
+    public void displayFlights(int time){
+        if(flightList.size() == 0){
+            System.out.println("No Flights currently booked.");
+        }
+        for(Flight f: flightList){
+            if(f.getTimeStart() == time){
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println("Flight ID: "+f.getId()+"\nFrom: "+f.getFrom()+"\nStart: "+f.getTimeStart()+"\nEnd: "+f.getTimeEnd());
             }
         }
-        return flightsToBeDisplayed;
     }
 
     public static void main(String[] args) {

@@ -1,9 +1,12 @@
+package com.company;
+
 public class Flight {
     private int id;
     private String from;
     private String to;
     private int timeStart;
     private int timeEnd;
+
 
     public Flight(int id, String from, String to, int timeStart, int timeEnd) {
         if (id<0||!isTimeValid(timeStart)||!isTimeValid(timeEnd)) {
@@ -17,11 +20,21 @@ public class Flight {
     }
 
     //accessors
-    public int getId() {return id;}
-    public String getFrom() {return from;}
-    public String getTo() {return to;}
-    public int getTimeStart() {return timeStart;}
-    public int getTimeEnd() {return timeEnd;}
+    public int getId() {
+        return id;
+    }
+    public String getFrom() {
+        return from;
+    }
+    public String getTo() {
+        return to;
+    }
+    public int getTimeStart() {
+        return timeStart;
+    }
+    public int getTimeEnd() {
+        return timeEnd;
+    }
 
     //mutators
     public void setTimeStart(int timeStart) {
@@ -50,6 +63,13 @@ public class Flight {
         return "id: "+id+"\t"+from+"-->"+to+"\t["+String.format("%04d", timeStart)+"-"+String.format("%04d", timeEnd)+"]";
     }
 
+    public void searchFlightbyDestination(String From, String To){
+        if (this.to.equals(To) && this.from.equals(From)){
+            System.out.println("-----------------------------------------------------------------------------------");
+            System.out.println("Flight ID: "+getId()+"\nFrom: "+getFrom()+"\nStart: "+getTimeStart()+"\nEnd: "+getTimeEnd());
+        }
+    }
+
     public static void main(String[] args) {
         Flight f = new Flight(0, "Airport A", "Airport B", 2300, 100);
         int invalidTimeList[] = {60, 199, -1600, 1678, 2400, 2360, 2500};
@@ -73,12 +93,14 @@ public class Flight {
             System.err.println("Error: Flight constructor didn't raise an error when given a negative id value.");
         } catch (IllegalArgumentException e) {}
         try {
-            Flight invalidTimes = new Flight(42, "One", "Two", 72, 0);
-            System.err.println("Error: Flight constructor didn't raise an error when given an invalid starting time.");
+            Flight invalidTimes = new Flight(-42, "One", "Two", 72, 0);
+            System.err.println("Error: Flight constructor didn't raise an error when given a invalid starting time.");
         } catch (IllegalArgumentException e) {}
         try {
-            Flight invalidTimes = new Flight(42, "One", "Two", 2000, 2292);
-            System.err.println("Error: Flight constructor didn't raise an error when given an invalid ending time.");
+            Flight invalidTimes = new Flight(-42, "One", "Two", 2000, 2292);
+            System.err.println("Error: Flight constructor didn't raise an error when given a invalid ending time.");
         } catch (IllegalArgumentException e) {}
+
+        f.searchFlightbyDestination("Airport A", "Airport B");
     }
 }

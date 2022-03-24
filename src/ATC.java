@@ -62,6 +62,11 @@ public class ATC extends Staff implements ATCInterface{
 
     @Override
     public void addProtocol(int id, String[] actions) {
+        for (Protocol p : this.protocols) {
+            if (p.getId() == id) {
+                throw new RuntimeException("Error: Protocol with id " + id + " has already been added.");
+            }
+        }
         Protocol protocolToAdd = new Protocol(id);
         for (String action : actions) {
             protocolToAdd.getActionQueue().add(action);
@@ -227,6 +232,13 @@ public class ATC extends Staff implements ATCInterface{
         atc.addProtocol(3, actions3);
         if (atc.getProtocols().get(1).getActionQueue().size() != 3) {
             System.out.println("Error in addProtocol(): action queue has wrong number of actions");
+        }
+        try {
+            atc.addProtocol(1, actions1);
+            System.out.println("Error in addProtocol(): did not throw exception for duplicate id");
+        }
+        catch (RuntimeException exception) {
+            // expected
         }
 
         // Tests for removeProtocol()

@@ -2,12 +2,10 @@ import java.util.ArrayList;
 
 public class Passenger implements CustomerInterface{
     public int ticket;
-    public Flight flight;
     public ArrayList<Flight> flightList;
 
-    public Passenger(int ticket, Flight flight) {
+    public Passenger(int ticket) {
         this.ticket = ticket;
-        this.flight = flight;
         this.flightList = new ArrayList<>();
     }
 
@@ -113,7 +111,7 @@ public class Passenger implements CustomerInterface{
     public static void main(String[] args) {
         // Tests for Passenger class
         Flight flight01 = new Flight(1, "Saskatoon", "Toronto", 1400, 1600);
-        Passenger passenger01 = new Passenger(1, flight01);
+        Passenger passenger01 = new Passenger(1);
 
         // Test bookFlight with valid input
         Flight flight02 = new Flight(2, "Calgary", "Vancouver", 1200, 1330);
@@ -169,7 +167,7 @@ public class Passenger implements CustomerInterface{
             // expected
         }
 
-        Passenger passenger02 = new Passenger(2, null);
+        Passenger passenger02 = new Passenger(2);
         // Unit tests for displayFlights()
         // Test displayFlights() with an empty flightList
         String expected = "No flights currently booked.";
@@ -206,7 +204,7 @@ public class Passenger implements CustomerInterface{
         }
 
         // Integration test: use bookFlight() to add to flightList followed by displayFlight()
-        Passenger passenger03 = new Passenger(3, null);
+        Passenger passenger03 = new Passenger(3);
         passenger03.bookFlight(flight04);
         expected = "id: 1\tSaskatoon-->Toronto\t[11:00-13:00]\n";
         result = passenger03.displayFlights();
@@ -229,7 +227,7 @@ public class Passenger implements CustomerInterface{
         System.out.println(passenger03.displayFlights());
 
         // Test displayFlights with location parameters
-        Passenger passenger04 = new Passenger(4, null);
+        Passenger passenger04 = new Passenger(4);
         String testFlightList = passenger03.displayFlights("Paris", "Paris");
         if (testFlightList.equals("No flights currently booked.")) {
             System.out.println("Error in displayFlights: no flights displayed when flights with specified locations were booked");

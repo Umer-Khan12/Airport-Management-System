@@ -45,8 +45,8 @@ public class Passenger implements CustomerInterface{
 
     @Override
     public String displayFlights() {
-        // Currently just returns a string representation for testing purposes
-        // TODO: proper display in a gui format
+        // Returns a string representation for testing purposes
+        // String is used in the GUI implementation (AirportManagementSystem class)
         String flightsToBeDisplayed = "";
         if (this.flightList.size() == 0) {
             flightsToBeDisplayed += "No flights currently booked.";

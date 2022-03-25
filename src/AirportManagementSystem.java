@@ -25,7 +25,9 @@ public class AirportManagementSystem {
         String[] passengerActionChoices = {"Select a Task:",
         "Book a Flight",
         "Cancel a Flight",
-        "Display Flights",
+        "Display All Booked Flights",
+        "Display Booked Flights by Location",
+        "Display Booked Flights by Departure Time",
         "Sign Out"};
 
         String[] staffActionChoices = {"Select a Task:",
@@ -66,6 +68,8 @@ public class AirportManagementSystem {
         "Sign Out"};
 
         // initialize user types
+        Passenger passenger = new Passenger(1);
+        Admin admin = new Admin(1, "Sophie", "Administrator");
         ATC atc = new ATC(1, "Ken", "Air Traffic Controller");
         // ATC is initialized with one runway
         Runway runway = new Runway(1);
@@ -76,9 +80,11 @@ public class AirportManagementSystem {
         Flight demoFlight1 = new Flight(1, "Saskatoon", "Vancouver", 1300, 1500);
         Flight demoFlight2 = new Flight(2, "Regina", "Montreal", 1800, 2000);
         Flight demoFlight3 = new Flight(3, "Calgary", "Winnipeg", 1100, 1200);
+        Flight demoFlight4 = new Flight(4, "Edmonton", "Ottawa", 700, 900);
         database.add(demoFlight1);
         database.add(demoFlight2);
         database.add(demoFlight3);
+        database.add(demoFlight4);
 
         AirportManagementSystem ams = new AirportManagementSystem();
         ams.gui.outputString("Welcome to the Airport Management System");
@@ -93,18 +99,76 @@ public class AirportManagementSystem {
                         passengerAction = ams.gui.readChoice(passengerActionChoices);
                         // book a flight
                         if (passengerAction == 1) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                            int flightToAdd = ams.gui.readInt("Enter the ID of the flight to book:");
+                            boolean flightBooked = false;
+                            for (Flight flight : database) {
+                                if (flight.getId() == flightToAdd) {
+                                    try {
+                                        passenger.bookFlight(flight);
+                                        ams.gui.outputString("Flight booked.");
+                                    }
+                                    catch (RuntimeException exception) {
+                                        ams.gui.outputString("You have already booked this flight.");
+                                    }
+                                    flightBooked = true;
+                                    break;
+                                }
+                            }
+                            if (!flightBooked) {
+                                ams.gui.outputString("Flight with ID " + flightToAdd + " does not exist.");
+                            }
                         }
                         // cancel a flight
                         else if (passengerAction == 2) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                            int flightToCancel = ams.gui.readInt("Enter the ID of the flight to cancel:");
+                            boolean flightCancelled = false;
+                            for (Flight flight : database) {
+                                if (flight.getId() == flightToCancel) {
+                                    try {
+                                        passenger.cancelFlight(flight);
+                                        ams.gui.outputString("Flight cancelled.");
+                                    }
+                                    catch (RuntimeException exception) {
+                                        ams.gui.outputString("You have not booked this flight.");
+                                    }
+                                    flightCancelled = true;
+                                    break;
+                                }
+                            }
+                            if (!flightCancelled) {
+                                ams.gui.outputString("Flight with ID " + flightToCancel + " does not exist.");
+                            }
                         }
-                        // display flights
+                        // display all booked flights
                         else if (passengerAction == 3) {
-                            // not implemented yet
-                            ams.gui.outputString("Feature not implemented yet.");
+                            ams.gui.outputString(passenger.displayFlights());
+                        }
+                        // display booked flights by location
+                        else if (passengerAction == 4) {
+                            String fromLocation = ams.gui.readString("Enter the location you a going from:");
+                            String toLocation = ams.gui.readString("Enter the location you are going to:");
+                            String matchingFlights = passenger.displayFlights(fromLocation, toLocation);
+                            if (matchingFlights.equals("No flights currently booked.")) {
+                                ams.gui.outputString("No flights currently booked with matching locations either from "
+                                        + fromLocation + " or to " + toLocation + ".");
+                            }
+                            else {
+                                ams.gui.outputString("Displaying flights with matching locations either from "
+                                        + fromLocation + " or to " + toLocation + ":\n" + matchingFlights);
+                            }
+                        }
+                        // display booked flights by departure time
+                        else if (passengerAction == 5) {
+                            int departureTime = ams.gui.readInt("Enter the time of departure:");
+                            String matchingFlights = passenger.displayFlights(departureTime);
+                            if (matchingFlights.equals("No flights currently booked.")) {
+                                ams.gui.outputString("No flights currently booked with departure time "
+                                        + departureTime + ".");
+                            }
+                            else {
+                                ams.gui.outputString("Displaying flights with departure time "
+                                        + departureTime + ":\n" + matchingFlights);
+                            }
                         }
                         // sign out
                         else if (passengerAction == -1 || passengerAction == passengerActionChoices.length - 1) {

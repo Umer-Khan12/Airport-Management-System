@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ca6ce2d-9844-479d-9181-164115aef252" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ATC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ATC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AirportManagementSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AirportManagementSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Passenger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +49,7 @@
       <recent name="C:\Users\jacks\Documents\USASK_Winter_2022\CMPT370\AirportManagementSystem\cmpt-370-group41\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Passenger">
+  <component name="RunManager" selected="Application.AirportManagementSystem">
     <configuration name="ATC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ATC" />
       <module name="cmpt-370-group41" />
@@ -87,8 +87,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Passenger" />
         <item itemvalue="Application.AirportManagementSystem" />
+        <item itemvalue="Application.Passenger" />
         <item itemvalue="Application.Flight" />
         <item itemvalue="Application.Runway" />
         <item itemvalue="Application.ATC" />

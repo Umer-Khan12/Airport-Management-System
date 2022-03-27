@@ -1,3 +1,6 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class AirportManagementSystem {
@@ -5,6 +8,241 @@ public class AirportManagementSystem {
 
     public AirportManagementSystem() {
         gui = new DialogIO();
+    }
+
+    /**
+     * Method to open up the interface a customer would see upon signing in
+     * @param userID the user's id, obtained from sign in page
+     */
+    private void customerSignIn(int userID) {
+        //arbitrary user data (would load the correct data here via a db)
+        Passenger customerUser = new Passenger(userID);
+        customerUser.flightList.add(new Flight(4, "AP1", "AP2", 1000, 1300));
+        customerUser.flightList.add(new Flight(5, "AP2", "AP3", 1430, 1745));
+        //arbitrary flight data, code to get flight data from db would go here
+        //(would need to remove duplicate flights already found in a Passenger's booked flights)
+        ArrayList<Flight> flights = new ArrayList<>();
+        flights.add(new Flight(1, "A", "B", 800, 1240));
+        flights.add(new Flight(2, "A", "C", 2200, 300));
+        flights.add(new Flight(3, "A", "G", 1600, 1820));
+        flights.add(new Flight(6, "G", "Z", 1910, 2200));
+        
+        Font defaultFont = new Font("Arial", Font.PLAIN, 20);
+        JFrame frame = new JFrame("Customer Page");
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        JButton button;
+        GridBagConstraints c = new GridBagConstraints();
+        
+        //setting up frame
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        
+        //setting up buttons
+        button = new JButton("Book A Flight");
+        button.setFont(defaultFont);
+        button.addActionListener(new ActionListener() {
+            //display a list of flights as options, call bookFlight on the options when clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //setting up dialog
+                JDialog bookingDialog = new JDialog(frame, "Available Flight List", true);
+                JPanel bookingPanel = new JPanel();
+                JScrollPane scroll = new JScrollPane(bookingPanel);
+                
+                bookingDialog.setLayout(new BorderLayout());
+                bookingDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                bookingDialog.add(scroll);
+                
+                bookingPanel.setLayout(new GridBagLayout());
+                
+                //generate options in the dialog here
+                //currently only generating a list of buttons from the given available flight list
+                c.fill = GridBagConstraints.HORIZONTAL;
+                c.ipadx = 20;  //horizontal padding
+                c.ipady = 0;   //vertical padding
+                c.insets = new Insets(0,0,0,0);  //no padding
+                c.weightx = 1.5;
+                c.gridx = 0;
+                c.gridy = 0;
+                for (int x=0; x<flights.size(); x++) {
+                    //label for flight info, button for booking
+                    final Flight F = flights.get(x);//ref to flight for use on button clicks
+                    JButton b = new JButton("Book");
+                    b.setFont(defaultFont);
+                    b.addActionListener(new ActionListener() {//call bookflight here
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            //booking selected flight
+                            customerUser.bookFlight(F);
+                            JOptionPane.showMessageDialog(bookingDialog, "Flight "+F.getId()+" booked.");
+                            flights.remove(F);//remove F from list of available flights for this user
+                            //code to get payment from user goes here
+                            
+                            bookingDialog.dispose();//close booking dialog
+                        }
+                    });
+                    
+                    JLabel label = new JLabel(" "+flights.get(x).toString()+": ", SwingConstants.CENTER);
+                    label.setFont(defaultFont);
+                    //flight info on left
+                    c.gridwidth = 5;
+                    c.gridx = 0;
+                    bookingPanel.add(label, c);
+                    //button on right
+                    c.gridwidth = 1;
+                    c.gridx = 5;
+                    bookingPanel.add(b, c);
+                    c.gridy++;
+                }
+                bookingDialog.pack();
+                bookingDialog.setVisible(true);
+            }
+        });
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipadx = 340;  //horizontal padding
+        c.ipady = 40;   //vertical padding
+        c.weightx = 0.5;
+        c.gridwidth = 3;//horizontal size of button = 3 buttons
+        c.gridx = 0;    //column 0
+        c.gridy = 0;    //row 0
+        panel.add(button, c);
+        
+        button = new JButton("Cancel A Flight");
+        button.setFont(defaultFont);
+        button.addActionListener(new ActionListener() {
+            //display a list of flights as options, call bookFlight on the options when clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if no flights to cancel
+                if (customerUser.flightList.isEmpty()) {
+                    JOptionPane.showMessageDialog(panel, "There are no booked flights to cancel.");
+                    return;
+                }
+                //setting up dialog
+                JDialog cancellingDialog = new JDialog(frame, "Cancelling Flight", true);
+                JPanel cancelPanel = new JPanel();
+                JScrollPane scroll = new JScrollPane(cancelPanel);
+                
+                cancellingDialog.setLayout(new BorderLayout());
+                cancellingDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                cancellingDialog.add(scroll);
+                
+                cancelPanel.setLayout(new GridBagLayout());
+                
+                //generate options in the dialog here
+                //currently only generating a list of buttons from the given available flight list
+                c.fill = GridBagConstraints.HORIZONTAL;
+                c.ipadx = 20;  //horizontal padding
+                c.ipady = 0;   //vertical padding
+                c.insets = new Insets(0,0,0,0);  //no padding
+                c.weightx = 1.5;
+                c.gridx = 0;
+                c.gridy = 0;
+                for (int x=0; x<customerUser.flightList.size(); x++) {
+                    //label for flight info, button for booking
+                    final Flight F = customerUser.flightList.get(x);//ref to flight for use on button clicks
+                    JButton b = new JButton("Cancel");
+                    b.setFont(defaultFont);
+                    b.addActionListener(new ActionListener() {//call cancelFlight here
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            //cancelling selected flight
+                            customerUser.cancelFlight(F);
+                            JOptionPane.showMessageDialog(cancellingDialog, "Flight "+F.getId()+" cancelled.");
+                            flights.add(F);//remove F from list of available flights for this user
+                            //refunding code goes here
+                            
+                            cancellingDialog.dispose();//close booking dialog
+                        }
+                    });
+                    
+                    JLabel label = new JLabel(" "+customerUser.flightList.get(x).toString()+": ", SwingConstants.CENTER);
+                    label.setFont(defaultFont);
+                    //flight info on left
+                    c.gridwidth = 5;
+                    c.gridx = 0;
+                    cancelPanel.add(label, c);
+                    //button on right
+                    c.gridwidth = 1;
+                    c.gridx = 5;
+                    cancelPanel.add(b, c);
+                    c.gridy++;
+                }
+                cancellingDialog.pack();
+                cancellingDialog.setVisible(true);
+            }
+        });
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipadx = 340;  //horizontal padding
+        c.ipady = 40;   //vertical padding
+        c.weightx = 0.5;
+        c.gridwidth = 3;//horizontal size of button = 3 buttons
+        c.gridx = 0;    //column 0
+        c.gridy = 1;    //row 1
+        panel.add(button, c);
+
+        button = new JButton("Sign Out");
+        button.setFont(defaultFont);
+        button.addActionListener(new ActionListener() {
+            //return to login state here
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //(need whoever's doing the login page to be done before anything could be done here)
+                
+            }
+        });
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipadx = 340;  //horizontal padding
+        c.ipady = 40;   //vertical padding
+        c.weightx = 0.5;
+        c.gridwidth = 3;//horizontal size of button = 3 buttons
+        c.gridx = 0;    //column 0
+        c.gridy = 2;    //row 2
+        panel.add(button, c);
+
+        button = new JButton("Exit");
+        button.setFont(defaultFont);
+        button.addActionListener(new ActionListener() {
+            //Quit the application here
+            //unsure if this part is neccessary when exiting the window also closes the program
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //could add a prompt asking if user is sure or a prompt to show dialog to user before ending
+                frame.dispose();
+            }
+        });
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipadx = 340;  //horizontal padding
+        c.ipady = 20;   //vertical padding
+        c.weightx = 0.0;
+        c.insets = new Insets(10,0,0,0); //add a little bit of padding at the top to seperate from rest of options
+        c.gridwidth = 3;//horizontal size of button = 3 buttons
+        c.gridx = 0;    //column 0
+        c.gridy = 3;    //row 3
+        panel.add(button, c);
+        
+        button = new JButton("Display Flights (DEBUG, Unsure what to do here still)");
+        button.setFont(defaultFont);
+        button.addActionListener(new ActionListener() {
+            //Display list of flight?
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO
+            }
+        });
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipadx = 340;  //horizontal padding
+        c.ipady = 0;    //no vertical padding
+        c.insets = new Insets(0,0,10,0);  //bottom padding
+        c.gridwidth = 2;   //2 columns wide
+        c.gridx = 0;       //column 0
+        c.gridy = 4;       //row 4
+        panel.add(button, c);
+        
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {

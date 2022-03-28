@@ -15,7 +15,7 @@ public class AirportManagementSystem {
      * @param userID the user's id, obtained from sign in page
      * @param parentFrame a parent frame to attach the dialog to, can be null
      */
-    private boolean customerSignIn(int userID, JFrame parentFrame) {
+    private void customerSignIn(int userID, JFrame parentFrame) {
         //arbitrary user data (would load the correct data here via a db)
         Passenger customerUser = new Passenger(userID);
         customerUser.flightList.add(new Flight(4, "AP1", "AP2", 1000, 1300));
@@ -224,7 +224,6 @@ public class AirportManagementSystem {
         dialog.add(panel);
         dialog.pack();
         dialog.setVisible(true);
-        return true;
     }
     
     public static void main(String[] args) {

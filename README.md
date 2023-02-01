@@ -1,4 +1,4 @@
-# CMPT-370-Group41
+# Airport Management System
 Simple airport management system created for a software engineering class final project.
 Authors: Jackson Davis, Neel Nadoda, Pal Patel, Umer Khan, and Yi Zhang Lim
 
